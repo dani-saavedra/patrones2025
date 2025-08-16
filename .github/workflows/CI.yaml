@@ -23,7 +23,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          image: danielsabana/cualquiercosa
+          image: danielsabana/patrones
           tags: ${{ github.sha }}
           registry: docker.io
           dockerfile: Dockerfile
