@@ -1,31 +1,29 @@
-name: Continuous Integration
-
+name: Continuos integration
 on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        name: Descargando el repositorio
-      - name: Instale Java
+      - uses: actions/checkout@v5
+        name: Descargando el proyecto
+      - name: Instalando Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Gradle configuration
-        uses: gradle/gradle-build-action@v2
+      - uses: gradle/gradle-build-action@v2
+        name: Instalando Gradle
       - name: Run build project
         run: ./gradlew build
       - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image
+        name: Push Docker image
         with:
           image: danielsabana/patrones
-          tags: ${{ github.sha }}
+          tags: latest
           registry: docker.io
           dockerfile: Dockerfile
           username: danielsabana
-          password: Daniel.28
+          password: ${{ secrets.DOCKER_PASSWORD }}

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SaludoController {
-//Agregar la parte de Jenkins al parcial.
+    //Agregar la parte de Jenkins al parcial.
     private static final Logger log = LoggerFactory.getLogger(SaludoController.class);
     @Value("${POD_NAME:desconocido}")
     private String podName;
@@ -25,6 +25,11 @@ public class SaludoController {
 
         return "Hola" + mensaje + " mundo desde " + podName + dto;
         //return "Hola mundo desde " + podName + new DTO("Daniel", 33);
+    }
+
+    @GetMapping("/vaca")
+    public String hacerVaca() {
+        return "Buckhanas o miedo";
     }
 
     @GetMapping("/despido")
